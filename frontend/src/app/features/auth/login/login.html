@@ -1,0 +1,41 @@
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h1>MPloyChek</h1>
+
+    <p>Digital Background Verification</p>
+
+    <form (ngSubmit)="login()">
+
+      <input
+        type="text"
+        placeholder="User ID"
+        [(ngModel)]="userId"
+        name="userId"
+      >
+
+      <input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        name="password"
+      >
+
+      <select
+        [(ngModel)]="role"
+        name="role"
+      >
+        <option>General User</option>
+        <option>Admin</option>
+      </select>
+
+      <button type="submit">
+        Login
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

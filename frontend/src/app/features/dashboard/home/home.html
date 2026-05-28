@@ -1,0 +1,105 @@
+<div class="dashboard">
+  <aside class="sidebar">
+    <h2>MPloyChek</h2>
+    <p>Verification Suite</p>
+
+    <nav>
+
+  <span class="active">Dashboard</span>
+
+  <span *ngIf="!isadmin">
+    Records
+  </span>
+
+  <span *ngIf="!isadmin">
+    Profile
+  </span>
+
+  <span *ngIf="isadmin">
+    User Management
+  </span>
+
+  <span *ngIf="isadmin">
+    Reports
+  </span>
+
+  <span>
+    Settings
+  </span>
+
+</nav>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h1>Welcome, {{ user?.userId || 'User' }}</h1>
+        <p>Role: {{ user?.role || 'General User' }}</p>
+      </div>
+
+      <button (click)="logout()">Logout</button>
+    </div>
+
+    <section class="cards">
+      <div class="card">
+        <p>Total Records</p>
+        <h2>{{ records.length }}</h2>
+      </div>
+
+      <div class="card">
+        <p>Verified</p>
+        <h2>1</h2>
+      </div>
+
+      <div class="card">
+        <p>Pending</p>
+        <h2>1</h2>
+      </div>
+
+      <div class="card">
+        <p>Rejected</p>
+        <h2>1</h2>
+      </div>
+    </section>
+
+    <section class="table-card">
+      <div class="table-header">
+        <h2>Verification Records</h2>
+        <span>Backend API Data</span>
+      </div>
+
+      <div *ngIf="loading && records.length === 0" class="loading-box">
+  Loading records...
+</div>
+
+      <div *ngIf="!loading && records.length === 0" class="loading-box">
+        No records found
+      </div>
+
+      <div class="table-wrapper" *ngIf="records.length > 0">
+        
+        <table>
+          <thead>
+            <tr>
+              <th>Candidate</th>
+              <th>Company</th>
+              <th>Status</th>
+              <th>Access Level</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let record of records">
+              <td>{{ record.candidate }}</td>
+              <td>{{ record.company }}</td>
+              <td>
+                <span class="badge">{{ record.status }}</span>
+              </td>
+              <td>{{ record.accessLevel }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>

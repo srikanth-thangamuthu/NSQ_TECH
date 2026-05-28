@@ -1,0 +1,92 @@
+<div
+  *ngIf="message"
+  class="toast"
+  [class.success]="messageType === 'success'"
+  [class.error]="messageType === 'error'"
+>
+  {{ message }}
+</div>
+<div class="admin-page">
+  <div class="header">
+    <div>
+      <h1>Admin User Management</h1>
+      <p>Create, manage and remove application users</p>
+    </div>
+  </div>
+  
+  <div class="form-card">
+    <h2>Add New User</h2>
+
+    <div class="form-grid">
+      <input type="text" placeholder="Full Name" [(ngModel)]="name" name="name">
+
+      <input type="email" placeholder="Email Address" [(ngModel)]="email" name="email">
+
+      <select [(ngModel)]="role" name="role">
+        <option>General User</option>
+        <option>Admin</option>
+      </select>
+
+      <button (click)="addUser()">
+  {{ saving ? 'Adding...' : 'Add User' }}
+</button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h2>Users</h2>
+
+  
+<input
+  class="search-box"
+  type="text"
+  placeholder="Search users by name, email or role"
+  [(ngModel)]="searchText"
+  name="searchText"
+/>
+    <table >
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+     
+
+      <tr *ngFor="let user of paginatedUsers; let i = index">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <span class="role">{{ user.role }}</span>
+        </td>
+        <td>{{ user.status }}</td>
+        <td>
+  <button class="edit" (click)="editUser(user)">
+    Edit
+  </button>
+
+  <button class="delete" (click)="deleteUser(user.id)">
+    Delete
+  </button>
+</td>
+
+       
+      </tr>
+    </table>
+    <div class="pagination" *ngIf="filteredUsers.length > pageSize">
+  <button (click)="previousPage()" [disabled]="currentPage === 1">
+    Previous
+  </button>
+
+  <span>
+    Page {{ currentPage }} of {{ totalPages }}
+  </span>
+
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+    Next
+  </button>
+</div>
+  </div>
+</div>
+ 
