@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(userId: string, password: string, role: string) {
-    return this.http.post<any>('http://localhost:3000/login', {
+    return this.http.post<any>('https://nsq-tech-backend.onrender.com/login', {
       userId,
       password,
       role

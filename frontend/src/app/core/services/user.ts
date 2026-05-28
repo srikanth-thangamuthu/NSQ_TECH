@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = 'https://nsq-tech-backend.onrender.com/users';
 
   constructor(private http: HttpClient) {}
 

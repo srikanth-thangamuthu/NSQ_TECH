@@ -10,7 +10,7 @@ export class RecordService {
 
   getRecords() {
   return this.http.get<any[]>(
-    'http://localhost:3000/records'
+    'https://nsq-tech-backend.onrender.com/records?t='
   );
 }
 }
